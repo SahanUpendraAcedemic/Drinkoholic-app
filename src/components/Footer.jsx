@@ -9,9 +9,9 @@ export default function Footer() {
             <div class="mb-6 md:mb-0">
               <a href="https://flowbite.com/" class="flex items-center">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src="src\assets\Title_drink.png"
                   class="h-8 me-3"
-                  alt="FlowBite Logo"
+                  alt="Logo"
                 />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                   Drinkoholic
@@ -30,8 +30,11 @@ export default function Footer() {
                     </a>
                   </li>
                   <li>
-                    <a href="https://tailwindcss.com/" class="hover:underline">
-                      Tailwind CSS
+                    <a
+                      href="https://www.thecocktaildb.com/"
+                      class="hover:underline"
+                    >
+                      CocktailDB
                     </a>
                   </li>
                 </ul>
