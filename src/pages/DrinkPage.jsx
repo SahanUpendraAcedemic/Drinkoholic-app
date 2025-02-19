@@ -1,0 +1,156 @@
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import drinkService from "../services/drinkService";
+import Loader from "../components/Loader";
+import { FaGlassMartini } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+
+export default function DrinkPage() {
+  const [drink, setDrink] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [tags, setTags] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const { id: drinkId } = useParams();
+
+  const fetchDrink = async () => {
+    try {
+      setLoading(true);
+      const fetchedDrink = await drinkService.getDrinkById(drinkId);
+      setDrink(fetchedDrink);
+      console.log("Drink fetched:", fetchedDrink);
+    } catch (error) {
+      console.error("Error fetching drink:", error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const drinkTags = async () => {
+    const tags = [];
+    if (drink.strAlcoholic === "Alcoholic") {
+      tags.push("Alcoholic");
+    }
+    if (drink.strCategory) {
+      tags.push(drink.strCategory);
+    }
+    if (drink.strIBA) {
+      tags.push(drink.strIBA);
+    }
+
+    setTags(tags);
+  };
+
+  const drinkIngredients = () => {
+    const ingredients = [];
+    for (let i = 1; i <= 15; i++) {
+      if (drink[`strIngredient${i}`]) {
+        ingredients.push(drink[`strIngredient${i}`]);
+      }
+    }
+    setIngredients(ingredients);
+    console.log("Ingredients:", ingredients);
+  };
+
+  useEffect(() => {
+    fetchDrink();
+  }, [drinkId]);
+
+  useEffect(() => {
+    if (drink) {
+      drinkTags();
+      drinkIngredients();
+    }
+  }, [drink]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!drink) {
+    return <div>Drink not found</div>;
+  }
+
+  return (
+    <div className="bg-gray-100 dark:bg-gray-800 flex flex-row items-center justify-center h-screen p-5">
+      <div className="flex flex-col gap-5 m-5 size-full justify-center ">
+        <button className="items-start w-max">
+          <a href="/catalog" className="text-gray-100 flex flex-row gap-2">
+            <FaArrowLeft className="text-gray-100" />
+            Back to drinks
+          </a>
+        </button>
+        <div className="flex flex-row gap-3 p-5 bg-white dark:bg-gray-900 rounded-lg shadow-lg mb-5">
+          <div className="flex flex-col gap-3">
+            <img
+              src={drink.strDrinkThumb}
+              alt={drink.strDrink}
+              className="size-60 rounded-2xl"
+            />
+            {tags.length >= 0 ? (
+              <div className="flex flex-col justify-center">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs bg-gray-800 text-neutral-50 rounded-full px-2 py-1 m-1 text-center"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                <div className="flex flex-row gap-2 my-3 items-center text-gray-100 ">
+                  <FaGlassMartini className="text-gray-100" /> {drink.strGlass}
+                </div>
+              </div>
+            ) : null}
+          </div>
+          <div className="flex flex-col gap-3 size-full ">
+            <div className="text-start justify-start">
+              <h1 className="text-2xl font-semibold text-gray-100">
+                {drink.strDrink}
+              </h1>
+              <h3 className="font-semibold text-gray-100">Instructions:</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-justify ps-5 p-5">
+                {drink.strInstructions}
+              </p>
+              <h3 className="font-semibold text-gray-100">Ingredients:</h3>
+              <div className="grid grid-cols-2 grid-rows-1 gap-2 text-gray-700 dark:text-gray-300">
+                {ingredients.map((ingredient, index) => (
+                  <span key={ingredient} className="flex flex-row gap-2">
+                    {
+                      <img
+                        src={`https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`}
+                        alt={ingredient}
+                        className="size-20 rounded-full"
+                      />
+                    }
+                    {ingredient}
+                    {(drink[`strMeasure${index + 1}`] &&
+                      ` - ${drink[`strMeasure${index + 1}`]}`) ||
+                      ""}
+                  </span>
+                ))}
+              </div>
+
+              {drink.strVideo ? (
+                <video
+                  className="w-full size-fit border border-gray-200 rounded-lg dark:border-gray-700"
+                  controls
+                >
+                  <source src={drink.strVideo} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <p className="text-gray-300">No video available</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

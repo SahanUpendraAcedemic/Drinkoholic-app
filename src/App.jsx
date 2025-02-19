@@ -8,8 +8,9 @@ function App() {
     <>
       <Router>
         <Header />
-        <Routers /> 
-        <main className="p-5 min-h-screen"></main>
+        <main className="mx-auto min-h-screen">
+          <Routers />
+        </main>
         <Footer />
       </Router>
     </>
