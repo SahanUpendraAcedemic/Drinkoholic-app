@@ -4,6 +4,8 @@ import drinkService from "../services/drinkService";
 import Loader from "../components/Loader";
 import { FaGlassMartini } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import { useDrinkContext } from "../context/DrinkContext";
 
 export default function DrinkPage() {
   const [drink, setDrink] = useState(null);
@@ -11,6 +13,7 @@ export default function DrinkPage() {
   const [error, setError] = useState(null);
   const [tags, setTags] = useState([]);
   const [ingredients, setIngredients] = useState([]);
+  const { addToCart, addToFavorites } = useDrinkContext();
   const { id: drinkId } = useParams();
 
   const fetchDrink = async () => {
@@ -92,6 +95,20 @@ export default function DrinkPage() {
               alt={drink.strDrink}
               className="size-60 rounded-2xl"
             />
+            <div className="space-x-2 items-center flex flex-row w-full justify-center">
+              <button
+                className="text-red-500 hover:text-red-700"
+                onClick={() => addToFavorites(drink)}
+              >
+                <FaHeart size={20} />
+              </button>
+              <button
+                className="text-blue-500 hover:text-blue-700"
+                onClick={() => addToCart(drink)}
+              >
+                <FaShoppingCart size={20} />
+              </button>
+            </div>
             {tags.length >= 0 ? (
               <div className="flex flex-col justify-center">
                 {tags.map((tag) => (
@@ -102,7 +119,7 @@ export default function DrinkPage() {
                     {tag}
                   </span>
                 ))}
-                <div className="flex flex-row gap-2 my-3 items-center text-gray-100 ">
+                <div className="flex flex-row gap-2 my-3 items-center justify-center text-gray-100 ">
                   <FaGlassMartini className="text-gray-100" /> {drink.strGlass}
                 </div>
               </div>

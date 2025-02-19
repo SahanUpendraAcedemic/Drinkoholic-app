@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import CartModal from "../model/CartModel";
+import FavoritesModal from "../model/FavoriteModel";
+import { useDrinkContext } from "../context/DrinkContext";
 
 export default function Header() {
+  const { setIsCartOpen, setIsFavoritesOpen } = useDrinkContext();
+
   return (
     <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -62,9 +68,27 @@ export default function Header() {
                 Ingrediants
               </a>
             </li>
+            <li>
+              <button
+                className=" md:p-0 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                onClick={() => setIsFavoritesOpen(true)}
+              >
+                <FaHeart className="text-red-600 " />
+              </button>
+            </li>
+            <li>
+              <button
+                className=" md:p-0 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                onClick={() => setIsCartOpen(true)}
+              >
+                <FaShoppingCart className="text-neutral-100" />
+              </button>
+            </li>
           </ul>
         </div>
       </div>
+      <CartModal />
+      <FavoritesModal />
     </nav>
   );
 }
