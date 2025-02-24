@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
 import { useDrinkContext } from "../context/DrinkContext";
 import { FaTimes, FaTrash } from "react-icons/fa";
 
 const CartModal = () => {
   const { cart, isCartOpen, setIsCartOpen, removeFromCart } = useDrinkContext();
+  console.log(cart);
 
   return (
     <div
-      className={`fixed inset-1 bg-white bg-opacity-50 flex justify-center items-center transition-opacity ${isCartOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity z-50 scroll-hide ${isCartOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
     >
       <div className="bg-gray-800 p-6 rounded-lg w-96">
         <div className="flex justify-between items-center">
@@ -30,7 +32,7 @@ const CartModal = () => {
                     alt={drink.strDrink}
                     className="w-12 h-12 rounded-md"
                   />
-                  <p className="text-sm">{drink.strDrink}</p>
+                  <p className="text-sm text-neutral-100">{drink.strDrink}</p>
                 </div>
                 <button
                   onClick={() => removeFromCart(drink.idDrink)}
@@ -42,6 +44,9 @@ const CartModal = () => {
             ))
           )}
         </div>
+        <Link to={"/cart"} className="text-neutral-100 text-center">
+          To Checkout
+        </Link>
         <button
           className="mt-4 w-full bg-amber-300 text-white py-2 rounded-md"
           onClick={() => setIsCartOpen(false)}

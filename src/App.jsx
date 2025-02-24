@@ -8,7 +8,7 @@ function App() {
     <>
       <Router>
         <Header />
-        <main className="mx-auto min-h-screen">
+        <main className="mx-auto min-h-screen bg-gray-800">
           <Routers />
         </main>
         <Footer />

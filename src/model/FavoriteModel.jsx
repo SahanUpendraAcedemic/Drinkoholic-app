@@ -11,9 +11,9 @@ const FavoritesModal = () => {
 
   return (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity ${isFavoritesOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity z-50 ${isFavoritesOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
     >
-      <div className="text-gray-300 p-6 rounded-lg w-96">
+      <div className="bg-gray-800 p-6 rounded-lg w-96">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-bold">Favorites</h2>
           <button onClick={() => setIsFavoritesOpen(false)}>
@@ -22,14 +22,16 @@ const FavoritesModal = () => {
         </div>
         <div className="mt-4 max-h-60 overflow-auto">
           {favorites.length === 0 ? (
-            <p className="text-gray-500 text-center">No favorite drinks yet.</p>
+            <p className="text-neutral-100 text-center">
+              No favorite drinks yet.
+            </p>
           ) : (
             favorites.map((drink) => (
               <div
                 key={drink.idDrink}
                 className="flex justify-between items-center p-2 border-b"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-neutral-100">
                   <img
                     src={drink.strDrinkThumb}
                     alt={drink.strDrink}

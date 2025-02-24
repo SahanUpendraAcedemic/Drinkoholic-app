@@ -20,13 +20,29 @@ export const DrinkProvider = ({ children }) => {
   };
 
   const addToCart = (drink) => {
-    if (!cart.some((d) => d.idDrink === drink.idDrink)) {
-      setCart([...cart, drink]);
+    const existingDrink = cart.find((d) => d.idDrink === drink.idDrink);
+    if (existingDrink) {
+      setCart(
+        cart.map((d) =>
+          d.idDrink === drink.idDrink ? { ...d, quantity: d.quantity + 1 } : d,
+        ),
+      );
+    } else {
+      setCart([...cart, { ...drink, quantity: 1 }]);
     }
   };
 
   const removeFromCart = (id) => {
-    setCart(cart.filter((drink) => drink.idDrink !== id));
+    const existingDrink = cart.find((d) => d.idDrink === id);
+    if (existingDrink.quantity > 1) {
+      setCart(
+        cart.map((d) =>
+          d.idDrink === id ? { ...d, quantity: d.quantity - 1 } : d,
+        ),
+      );
+    } else {
+      setCart(cart.filter((drink) => drink.idDrink !== id));
+    }
   };
 
   return (

@@ -139,9 +139,7 @@ export default function Mainpage() {
               </div>
             ))
           ) : (
-            <p className="text-gray-500 dark:text-gray-300 text-center">
-              Search through Our vast collection of drinks
-            </p>
+            <></>
           )}
         </div>
       </div>
