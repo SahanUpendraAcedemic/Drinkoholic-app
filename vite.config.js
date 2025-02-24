@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     cors: {
       // the origin you will be accessing via browser
-      origin: "https://drinkoholic.netlify.app/",
+      origin: "drinkoholic.netlify.app",
     },
   },
   build: {
