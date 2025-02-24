@@ -80,15 +80,16 @@ export default function DrinkPage() {
   }
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 flex flex-row items-center justify-center h-screen p-5">
-      <div className="flex flex-col gap-5 m-5 size-full justify-center ">
-        <button className="items-start w-max">
-          <a href="/catalog" className="text-gray-100 flex flex-row gap-2">
-            <FaArrowLeft className="text-gray-100" />
-            Back to drinks
-          </a>
+    <div className="bg-gray-100 dark:bg-gray-800 flex items-center justify-center h-screen p-5">
+      <div className="flex flex-col gap-3 m-5 size-full justify-center ">
+        <button
+          className=" text-neutral-100 bg-amber-700 flex flex-row items-center justify-center rounded-2xl w-sm h-10 gap-2 "
+          onClick={() => window.history.back()}
+        >
+          <FaArrowLeft className="text-gray-100" />
+          Back to drinks
         </button>
-        <div className="flex flex-row gap-3 p-5 bg-white dark:bg-gray-900 rounded-lg shadow-lg mb-5">
+        <div className="flex flex-row gap-3 p-5 bg-white dark:bg-gray-900 rounded-lg mb-5">
           <div className="flex flex-col gap-3">
             <img
               src={drink.strDrinkThumb}
@@ -103,7 +104,7 @@ export default function DrinkPage() {
                 <FaHeart size={20} />
               </button>
               <button
-                className="text-blue-500 hover:text-blue-700"
+                className="text-amber-500 hover:text-amber-700"
                 onClick={() => addToCart(drink)}
               >
                 <FaShoppingCart size={20} />
@@ -125,46 +126,45 @@ export default function DrinkPage() {
               </div>
             ) : null}
           </div>
-          <div className="flex flex-col gap-3 size-full ">
-            <div className="text-start justify-start">
-              <h1 className="text-2xl font-semibold text-gray-100">
-                {drink.strDrink}
-              </h1>
+          <div className="flex flex-col gap-2 size-full p-2 justify-center items-start">
+            <h1 className="text-2xl font-semibold text-gray-100">
+              {drink.strDrink}
+            </h1>
+            <div className="flex flex-col gap-0">
               <h3 className="font-semibold text-gray-100">Instructions:</h3>
-              <p className="text-gray-700 dark:text-gray-300 text-justify ps-5 p-5">
+              <p className="text-gray-700 dark:text-gray-300 text-justify p-5">
                 {drink.strInstructions}
               </p>
-              <h3 className="font-semibold text-gray-100">Ingredients:</h3>
-              <div className="grid grid-cols-2 grid-rows-1 gap-2 text-gray-700 dark:text-gray-300">
-                {ingredients.map((ingredient, index) => (
-                  <span key={ingredient} className="flex flex-row gap-2">
-                    {
-                      <img
-                        src={`https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`}
-                        alt={ingredient}
-                        className="size-20 rounded-full"
-                      />
-                    }
-                    {ingredient}
-                    {(drink[`strMeasure${index + 1}`] &&
-                      ` - ${drink[`strMeasure${index + 1}`]}`) ||
-                      ""}
-                  </span>
-                ))}
-              </div>
-
-              {drink.strVideo ? (
-                <video
-                  className="w-full size-fit border border-gray-200 rounded-lg dark:border-gray-700"
-                  controls
-                >
-                  <source src={drink.strVideo} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <p className="text-gray-300">No video available</p>
-              )}
             </div>
+            <h3 className="font-semibold text-gray-100">Ingredients:</h3>
+            <div className="grid grid-cols-2 grid-rows-1 gap-2 text-gray-700 dark:text-gray-300 ">
+              {ingredients.map((ingredient, index) => (
+                <span key={ingredient} className="flex flex-row gap-2">
+                  {
+                    <img
+                      src={`https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`}
+                      alt={ingredient}
+                      className="size-20 rounded-full"
+                    />
+                  }
+                  {ingredient}
+                  {(drink[`strMeasure${index + 1}`] &&
+                    ` - ${drink[`strMeasure${index + 1}`]}`) ||
+                    ""}
+                </span>
+              ))}
+            </div>
+
+            {drink.strVideo ? (
+              <button
+                className="text-amber-500 hover:text-amber-700"
+                onClick={() => window.open(drink.strVideo)}
+              >
+                Watch Instruction
+              </button>
+            ) : (
+              <p className="text-gray-300">No video available</p>
+            )}
           </div>
         </div>
       </div>

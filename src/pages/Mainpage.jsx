@@ -64,8 +64,8 @@ export default function Mainpage() {
     slidesToScroll: 1,
     swipeToSlide: false,
     autoplay: true,
+    className: "",
     arrows: false,
-    className: "w-full h-96",
     responsive: [
       {
         breakpoint: 1024,
@@ -110,16 +110,11 @@ export default function Mainpage() {
       </div>
 
       {/* Drink Slider Section */}
-      <div
-        className="mt-5 p-6 h-screen flex items-center justify-center snap-start"
-        data-taos-offset="200"
-      >
+      <div className="mt-5 h-screen snap-start" data-taos-offset="200">
         <Slider {...sliderSettings}>
           {drinks.map((drink) => (
-            <div key={drink.idDrink} className="px-2 h-full flex items-center">
-              <div className="grow flex flex-col h-full">
-                <DrinkCard drink={drink} className="h-full min-h-[350px]" />
-              </div>
+            <div key={drink.idDrink} className="h-full p-20 gap-5 scale-90">
+              <DrinkCard drink={drink} className="" />
             </div>
           ))}
         </Slider>

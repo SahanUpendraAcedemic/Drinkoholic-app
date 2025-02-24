@@ -55,14 +55,14 @@ export default function SearchBar({ onSearch }) {
           <div className="relative w-full">
             <input
               type="search"
-              className="block p-2.5 w-full z-20 text-sm rounded-xl text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+              className="block p-2.5 w-full z-20 text-sm rounded-xl text-gray-900 bg-gray-50 border border-gray-300 focus:ring-amber-200 focus:border-amber-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
               placeholder="Search Drinks..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <button
               type="submit"
-              className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-amber-300 rounded-e-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-amber-300 rounded-e-lg hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
             >
               <svg
                 className="w-4 h-4"
@@ -112,7 +112,7 @@ export default function SearchBar({ onSearch }) {
                       <FaHeart size={20} />
                     </button>
                     <button
-                      className="text-blue-500 hover:text-blue-700"
+                      className="text-amber-100 hover:text-amber-300"
                       onClick={() => addToCart(drink)}
                     >
                       <FaShoppingCart size={20} />

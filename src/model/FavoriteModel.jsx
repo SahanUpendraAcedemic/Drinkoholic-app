@@ -11,16 +11,17 @@ const FavoritesModal = () => {
 
   return (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity z-50 ${isFavoritesOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+      className={`absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity z-50 
+        ${isFavoritesOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
     >
       <div className="bg-gray-800 p-6 rounded-lg w-96">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-bold">Favorites</h2>
+          <h2 className="text-lg font-bold text-neutral-100">Favorites</h2>
           <button onClick={() => setIsFavoritesOpen(false)}>
             <FaTimes />
           </button>
         </div>
-        <div className="mt-4 max-h-60 overflow-auto">
+        <div className="mt-4 max-h-60 overflow-auto scrollbar-hide">
           {favorites.length === 0 ? (
             <p className="text-neutral-100 text-center">
               No favorite drinks yet.
@@ -50,7 +51,7 @@ const FavoritesModal = () => {
           )}
         </div>
         <button
-          className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md"
+          className="mt-4 w-full bg-amber-300 text-white py-2 rounded-md"
           onClick={() => setIsFavoritesOpen(false)}
         >
           Close

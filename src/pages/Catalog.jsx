@@ -43,13 +43,13 @@ export default function Catalog() {
 
   return (
     <div className="min-h-full bg-gray-100 dark:bg-gray-800 flex flex-row items-start p-4">
-      <div className="w-3xl min-h-full bg-gray-900 rounded-2xl flex flex-row items-start justify-between p-4 sticky top-2">
+      <div className="w-1/4 min-h-full bg-gray-900 rounded-2xl flex flex-row items-start justify-between p-4 sticky top-2">
         <form className="flex flex-col w-full gap-3 text-neutral-100 ">
           <p>Sort by:</p>
           <select
             id="sort"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5
+               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-amber-500 dark:focus:border-amber-500"
             onChange={(e) => {
               const sortedDrinks = filteredDrinks.sort((a, b) => {
                 if (e.target.value === "name") {
@@ -68,8 +68,8 @@ export default function Catalog() {
           <p>Filter by category:</p>
           <select
             id="filter"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-               dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+               dark:placeholder-gray-400 dark:text-white dark:focus:ring-amber-500 dark:focus:border-amber-500"
             onChange={(e) => {
               const filter = [...allDrinks].filter((drink) =>
                 drink.strCategory.includes(e.target.value),
@@ -85,7 +85,7 @@ export default function Catalog() {
           </select>
         </form>
       </div>
-      <div>
+      <div className="w-3/4 min-h-full bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
         <div className="flex flex-row p-4 justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold mb-4 text-neutral-100">
@@ -100,8 +100,7 @@ export default function Catalog() {
                   <li>
                     <Button
                       onClick={() => returnBtnPress(index)}
-                      className="flex items-center justify-center px-3  h-8 leading-tight text-gray-500 bg-white border
-                 border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center px-3 h-8 leading-tight "
                     >
                       {index || setIndex(index)}
                     </Button>

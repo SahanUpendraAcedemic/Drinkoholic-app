@@ -8,7 +8,7 @@ const CartModal = () => {
 
   return (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity z-50 scroll-hide ${isCartOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+      className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center transition-opacity z-50 ${isCartOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
     >
       <div className="bg-gray-800 p-6 rounded-lg w-96">
         <div className="flex justify-between items-center">
@@ -17,7 +17,7 @@ const CartModal = () => {
             <FaTimes />
           </button>
         </div>
-        <div className="mt-4 max-h-60 overflow-auto">
+        <div className="mt-4 max-h-60 overflow-auto scrollbar-hide">
           {cart.length === 0 ? (
             <p className="text-gray-500 text-center">Your cart is empty.</p>
           ) : (
