@@ -3,7 +3,7 @@ import React from "react";
 export default function Hero() {
   return (
     <div
-      className="min-h-screen delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0"
+      className="h-screen w-screen delay-[300ms] duration-[600ms] taos:scale-[0.6] taos:opacity-0"
       data-taos-offset="200"
     >
       <section className="bg-white dark:bg-gray-900 min-h-full">
@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
           <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <img
-              src="public\Hero_drink.png"
+              src="\Hero_drink.png"
               alt="Transparent Lemonade Pitcher Clipart - Purple Rain Cocktail Rezept, HD Png Download@kindpng.com"
             />
           </div>
